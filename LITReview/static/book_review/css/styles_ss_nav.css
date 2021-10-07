@@ -1,0 +1,8 @@
+.navbar-nav, .navbar-toggler{
+	display: none;
+	width: 0;
+}
+
+.navbar-brand {
+	width: 100%;
+}

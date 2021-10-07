@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="text-center mt-3">Créer une critique</h2>
+<form class="form-inline container" method="post" action="{% url 'book_review:crea_review' %}" enctype="multipart/form-data">
+    <p>Livre/Article</p>
+    {% include 'book_review/ticket.html' with stop_btn=1 %}
+    <hr class="sep">
+    {% include 'book_review/review.html'%}
+</form>
+
+{% endblock %}

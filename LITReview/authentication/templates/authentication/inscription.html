@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container">
+    <form class="form-inline row justify-content-center" action="{% url 'inscription' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group col-6 text-center mb-3">
+            <h2 class="sub-title mb-3">Inscrivez-vous</h2>
+            <div class="error-id mb-3">{{message}}</div>
+            <input class="form-control mb-3" placeholder="Nom d'utilisateur" type="text" name="name" id="name" required>
+            <input class="form-control mb-3" placeholder="Mot de passe" type="text" name="password" id="password" required>
+            <input class="form-control " placeholder="Confirmer mot de passe"  type="text" name="confirm_pass" id="confirm_pass" required>
+            <div class="mb-3 feedback">Le mot de passe doit contenir au moins 8 caractères</div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="{% url 'connection' %}" class="btn btn-primary me-md-2" role="button">Retourner</a>
+            <button type="submit" class="btn btn-primary">S'inscrire</button>
+            </div>
+        </div>
+    </form>
+</section>
+{% endblock %}

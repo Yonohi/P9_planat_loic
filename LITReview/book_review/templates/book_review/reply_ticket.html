@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="text-center mt-3">Créer une critique</h2>
+<section class="container">
+    <p>Vous êtes en train de poster en réponse à {{ticket}}</p>
+    {% include 'book_review/display_ticket.html' with stop_btn=1 ticket=ticket %}
+    <hr class="sep">
+    <form class="form-inline" method="post" action="{% url 'book_review:reply_ticket' ticket.id %}">
+    {% include 'book_review/review.html' %}
+       <!-- <div class="d-grid justify-content-end">
+            <input class="btn btn-primary mt-3" type="submit" value="Envoyer">
+        </div>-->
+    </form>
+</section>
+{% endblock %}
+

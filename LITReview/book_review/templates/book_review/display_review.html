@@ -1,0 +1,33 @@
+<section class="container post-display">
+    <div class="row justify-content-between">
+        <p class="col-auto">{{review.user.username}} a publié une critique</p>
+        <p class="col-auto">{{review.time_created}}</p>
+    </div>
+    <div class="post-text">{{review.headline}} - Note : {{review.rating}}&emsp;   
+    {% for i in stars %}
+    {% if i <= review.rating %}
+        <i class="rating rating-or">☆</i>
+    {% else %}
+        <i class="rating rating-bl">☆</i>
+    {% endif %}
+    {% endfor %}
+    </div>
+    <p class="post-text">{{review.body}}</p>
+    <section class="container">
+        <div class="row justify-content-center">
+            <div class="col-6 review-bg">
+                <p>Ticket - {{review.ticket.user.username}}</p>
+                <p class="post-text">{{review.ticket.title}}</p>
+                <div class="row justify-content-center">
+                    <img src="{{review.ticket.image.url}}"  class="img_post"/>
+                </div>
+            </div>
+        </div>
+    </section>  
+    {% if post %}
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="{% url 'book_review:reply_ticket' review.ticket.id %}" class="col-auto btn btn-primary mx-3" role="button">Modifier</a>
+        <a href="#" class="col-auto btn btn-primary" role="button">Supprimer</a>
+    </div>
+    {% endif %}
+</section>

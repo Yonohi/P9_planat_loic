@@ -1,0 +1,22 @@
+<section class="container post-display">
+    <div class="row justify-content-between">
+        <p class="col-auto">{{ticket.user.username}} a demandé une critique</p>
+        <p class="col-auto">{{ticket.time_created}}</p>
+    </div>    
+        <p class="post-text">Titre : {{ticket.title}}</p>
+        <p class="post-text">{{ticket.description}}</p>
+        <div class="row justify-content-center">
+            <img src="{{ticket.image.url}}"  class="col-auto img_post"/>
+        </div>
+        {% if not stop_btn %}
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="{% url 'book_review:reply_ticket' ticket.id %}" class="col-auto btn btn-primary" role="button">Créer une critique</a>
+        </div>
+        {% endif %}
+        {% if post %}
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="{% url 'book_review:crea_ticket' ticket.id %}" class="col-auto btn btn-primary mx-3" role="button">Modifier</a>
+            <a href="{% url 'book_review:posts' %}" class="col-auto btn btn-primary" role="button">Supprimer</a>
+        </div>
+        {% endif %}        
+</section>

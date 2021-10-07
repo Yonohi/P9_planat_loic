@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="container button-create">
+    <div class="row justify-content-center">
+        <a href="{% url 'book_review:crea_ticket' %}" class="col-auto btn btn-dark" role="button">Demander une critique</a>
+        <a href="{% url 'book_review:crea_review' %}" class="col-auto offset-1 btn btn-dark" role="button">Créer une critique</a>
+    </div>
+</section>
+{% for elemt in list_elemts %}
+{% if elemt in tickets %}
+    {% include 'book_review/display_ticket.html' with ticket=elemt %}
+    <hr class="sep">
+
+{% elif elemt in reviews %}
+    {% include 'book_review/display_review.html' with review=elemt %}
+    <hr class="sep">
+{% endif %}
+{% empty %}
+<section class="container h-25">
+    <div class="row justify-content-center">
+        <div class="col">
+            <h2>Désolé aucune donnée sur le flux !</h2>
+        </div>
+    </div>
+</section>
+{% endfor %}
+{% endblock %}
