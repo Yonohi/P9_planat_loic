@@ -8,9 +8,13 @@
 </section>
 {% for elemt in list_elemts %}
 {% if elemt in tickets %}
+    {% if elemt in tickets_stop_btn %}
+    {% include 'book_review/display_ticket.html' with ticket=elemt stop_btn=1 %}
+    <hr class="sep">
+    {% else %}
     {% include 'book_review/display_ticket.html' with ticket=elemt %}
     <hr class="sep">
-
+    {% endif %}
 {% elif elemt in reviews %}
     {% include 'book_review/display_review.html' with review=elemt %}
     <hr class="sep">

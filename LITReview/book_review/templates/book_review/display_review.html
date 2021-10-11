@@ -18,16 +18,21 @@
             <div class="col-6 review-bg">
                 <p>Ticket - {{review.ticket.user.username}}</p>
                 <p class="post-text">{{review.ticket.title}}</p>
+                {% if review.ticket.image %}
                 <div class="row justify-content-center">
                     <img src="{{review.ticket.image.url}}"  class="img_post"/>
                 </div>
+                {% endif %}
             </div>
         </div>
     </section>  
     {% if post %}
+    <form class="form-inline" method="post" action="{% url 'book_review:posts' %}">
+    {% csrf_token %}
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <a href="{% url 'book_review:reply_ticket' review.ticket.id %}" class="col-auto btn btn-primary mx-3" role="button">Modifier</a>
-        <a href="#" class="col-auto btn btn-primary" role="button">Supprimer</a>
+        <button class="col-auto btn btn-primary" role="button" type="submit" name="review_delete" value="{{review.id}}">Supprimer</button>
     </div>
     {% endif %}
+    </form>
 </section>

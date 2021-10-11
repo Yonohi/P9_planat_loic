@@ -5,18 +5,23 @@
     </div>    
         <p class="post-text">Titre : {{ticket.title}}</p>
         <p class="post-text">{{ticket.description}}</p>
+        {% if ticket.image %}
         <div class="row justify-content-center">
             <img src="{{ticket.image.url}}"  class="col-auto img_post"/>
         </div>
+        {% endif %}
         {% if not stop_btn %}
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <a href="{% url 'book_review:reply_ticket' ticket.id %}" class="col-auto btn btn-primary" role="button">Créer une critique</a>
         </div>
         {% endif %}
         {% if post %}
+        <form class="form-inline" method="post" action="{% url 'book_review:posts' %}">
+        {% csrf_token %}
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <a href="{% url 'book_review:crea_ticket' ticket.id %}" class="col-auto btn btn-primary mx-3" role="button">Modifier</a>
-            <a href="{% url 'book_review:posts' %}" class="col-auto btn btn-primary" role="button">Supprimer</a>
+            <button class="col-auto btn btn-primary" role="button" type="submit" name="ticket_delete" value="{{ticket.id}}">Supprimer</button>
         </div>
+        </form>
         {% endif %}        
 </section>

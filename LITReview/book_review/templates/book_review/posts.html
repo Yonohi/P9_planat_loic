@@ -7,8 +7,10 @@
     <hr class="sep">
 
 {% elif elemt in reviews %}
+    {% if elemt.ticket %}
     {% include 'book_review/display_review.html' with review=elemt post=1 %}
     <hr class="sep">
+    {% endif %}
 {% endif %}
 {% empty %}
 <section class="container h-25">
