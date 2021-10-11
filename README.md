@@ -21,7 +21,7 @@ git clone https://github.com/Yonohi/P9_planat_loic.git
 ```
 Go into the new folder:
 ```
-cd <pathdirectory>/P9_planat_loic
+cd P9_planat_loic
 ```
 Create the environment:
 ```
