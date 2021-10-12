@@ -52,6 +52,30 @@ Now you can go to the address
 ```
 http://127.0.0.1:8000/
 ```
+## How it works
+At this address you can register or log in. After that you access to the flux page where you see your posts, and the posts from users you follow. There are two buttons which allow respectively to create a ticket or a ticket and its review.  You can go to the post page where you will find your posts which can be modified or delete if you want it. There is also a page named 'abonnements' allowing to subscribe to the user you want and unsubscribe to users you want to stop following. You can log out at any time.
+## Need a superuser?
+You have to go to the project folder and type
+```
+python3 manage.py createsuperuser
+```
+Now give your username, mail and password, and it's done. The admin page is reachable.
+```
+http://127.0.0.1:8000/admin/
+```
+## Information about database
+Go to the folder where you have your database and type
+```
+sqlite3 db.sqlite3
+```
+You can see all the tables with
+```
+.tables
+```
+To see the content of a table.
+```
+select * from <nametable>;
+```
 ## Conclusion
 It was an interesting project which make me think differently. I hope you will enjoy this creation.
 ## Author

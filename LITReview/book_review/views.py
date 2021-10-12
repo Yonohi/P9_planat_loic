@@ -3,13 +3,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user
 from .models import Ticket, Review, UserFollows
-from .forms import TicketForm
 import os
 
 
+STARS = [1, 2, 3, 4, 5]
+
 @login_required   
 def flux(request):
-    stars = [1, 2, 3, 4, 5]
     # On sélectionne l'utilisateur et les personnes suivies
     user = get_user(request)
     user_followeds = [pair.followed_user for pair in UserFollows.objects.filter(user=user)]
@@ -48,14 +48,13 @@ def flux(request):
         'tickets': tickets,
         'reviews': reviews,
         'user_followeds': user_posts,
-        'stars': stars
+        'stars': STARS
     }
     return render(request, 'book_review/flux.html', context)
 
 
 @login_required
 def posts(request):
-    stars = [1, 2, 3, 4, 5]
     list_elemts = []
     actual_user = get_user(request)
     tickets = Ticket.objects.filter(user=actual_user)
@@ -64,6 +63,7 @@ def posts(request):
         list_elemts.append(review)
     for ticket in tickets:
         list_elemts.append(ticket)
+    # Cas où l'utilisateur appuis sur le bouton supprimer pour un ticket
     if 'ticket_delete' in request.POST:
         id_to_delete = request.POST.get('ticket_delete')
         ticket_to_delete = Ticket.objects.get(id=id_to_delete)
@@ -71,6 +71,7 @@ def posts(request):
             os.remove(ticket_to_delete.image.path)
         ticket_to_delete.delete()
         return redirect('book_review:posts')
+    # Cas où l'utilisateur appuis sur le bouton supprimer pour une review
     if 'review_delete' in request.POST:
         id_to_delete = request.POST.get('review_delete')
         review_to_delete = Review.objects.get(id=id_to_delete)
@@ -82,7 +83,7 @@ def posts(request):
                               reverse=True),
         'tickets': tickets,
         'reviews': reviews,
-        'stars': stars
+        'stars': STARS
     }
     return render(request, 'book_review/posts.html', context)
 
@@ -92,6 +93,7 @@ def abonnements(request):
     user = get_user(request)
     message = ''
     if request.method == "POST":
+        # Cas où l'utilisateur souhaite suivre quelqu'un
         if 'sub' in request.POST:
             name = request.POST.get('name')
             if name in [user.username for user in User.objects.all()] \
@@ -104,7 +106,8 @@ def abonnements(request):
                 pair.full_clean()
                 pair.save()
             else:
-                message = 'Il y a un problème avec le nom rentré, vueillez recommencer.'
+                message = 'Il y a un problème avec le nom rentré, veuillez recommencer.'
+        # Cas où l'utilisateur souhaite arrêter de suivre une personne
         elif 'unsub' in request.POST:
             unsub_name = request.POST.get('unsub')
             unsub_user = User.objects.get(username=unsub_name)
@@ -126,26 +129,26 @@ def abonnements(request):
 @login_required
 def crea_ticket(request, ticket_id=""):
     context = {}
-    # a enlever
-    form = TicketForm()
     if ticket_id:
         ticket = Ticket.objects.get(id=ticket_id)
         context["ticket"] = ticket
     if request.method == "POST":
-        # a enlever
-        form = TicketForm(request.POST)
         title = request.POST.get('title')
         description = request.POST.get('description')
         user = get_user(request)
         image = request.FILES.get("image")
+        # Cas où l'on va modifier un ticket existant
         if ticket_id:
             ticket = Ticket.objects.get(id=ticket_id)
             ticket.title = title
             ticket.description = description
             if image:
+                if os.path.exists(ticket.image.path):
+                    os.remove(ticket.image.path)
                 ticket.image = image
             ticket.full_clean()
             ticket.save()
+        # Cas où l'on créé un nouveau ticket
         else:
             ticket = Ticket(
                 title=title,
@@ -156,8 +159,6 @@ def crea_ticket(request, ticket_id=""):
             ticket.full_clean()
             ticket.save()
         return flux(request)
-    # a enlever
-    context['form'] = form
     return render(request, 'book_review/crea_ticket.html', context)
 
 
@@ -209,12 +210,14 @@ def reply_ticket(request, ticket_id):
         rating = request.POST.get('rating')
         headline = request.POST.get('headline')
         body = request.POST.get('body')
+        # Cas de modification de review
         if test_review:
             test_review[0].rating = rating
             test_review[0].headline = headline
             test_review[0].body = body
             test_review[0].full_clean()
             test_review[0].save()
+        # Cas de création de review
         else:
             review = Review(
                 rating=rating,

@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 
 
 class LoginForm(forms.Form):
@@ -13,8 +12,3 @@ class LoginForm(forms.Form):
                                widget=forms.TextInput(attrs={
                                    'class': 'form-control mb-3',
                                    'placeholder': 'Mot de passe'}))
-
-
-# a enlever
-class SignupForm(UserCreationForm):
-    pass
