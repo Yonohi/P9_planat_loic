@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user
 from .models import Ticket, Review, UserFollows
 from .forms import TicketForm
+import os
 
 
 @login_required   
@@ -66,6 +67,8 @@ def posts(request):
     if 'ticket_delete' in request.POST:
         id_to_delete = request.POST.get('ticket_delete')
         ticket_to_delete = Ticket.objects.get(id=id_to_delete)
+        if os.path.exists(ticket_to_delete.image.path):
+            os.remove(ticket_to_delete.image.path)
         ticket_to_delete.delete()
         return redirect('book_review:posts')
     if 'review_delete' in request.POST:
