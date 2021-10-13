@@ -9,6 +9,6 @@ class LoginForm(forms.Form):
                                    'placeholder': 'Nom d\'utilisateur'}))
     password = forms.CharField(max_length=30,
                                label='',
-                               widget=forms.TextInput(attrs={
+                               widget=forms.PasswordInput(attrs={
                                    'class': 'form-control mb-3',
                                    'placeholder': 'Mot de passe'}))

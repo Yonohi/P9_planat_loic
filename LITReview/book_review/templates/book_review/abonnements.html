@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<section>
 <form class="form-inline container" method="post" action="{% url 'book_review:abonnements' %}">
     {% csrf_token %}
     <div class="row justify-content-center">
@@ -39,4 +40,5 @@
         </div>
     </div>
 </form>
+</section>
 {% endblock %}

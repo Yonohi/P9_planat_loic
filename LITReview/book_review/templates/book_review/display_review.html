@@ -1,4 +1,4 @@
-<section class="container post-display">
+<div class="container post-display">
     <div class="row justify-content-between">
         <p class="col-auto">{{review.user.username}} a publié une critique</p>
         <p class="col-auto">{{review.time_created}}</p>
@@ -13,7 +13,7 @@
     {% endfor %}
     </div>
     <p class="post-text">{{review.body}}</p>
-    <section class="container">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-6 review-bg">
                 <p>Ticket - {{review.ticket.user.username}}</p>
@@ -25,7 +25,7 @@
                 {% endif %}
             </div>
         </div>
-    </section>  
+    </div>
     {% if post %}
     <form class="form-inline" method="post" action="{% url 'book_review:posts' %}">
     {% csrf_token %}
@@ -35,4 +35,4 @@
     </div>
     {% endif %}
     </form>
-</section>
+</div>

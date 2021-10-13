@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-<section class="container button-create">
+<section>
+<div class="container button-create">
     <div class="row justify-content-center">
         <a href="{% url 'book_review:crea_ticket' %}" class="col-auto btn btn-dark" role="button">Demander une critique</a>
         <a href="{% url 'book_review:crea_review' %}" class="col-auto offset-1 btn btn-dark" role="button">Créer une critique</a>
     </div>
-</section>
+</div>
 {% for elemt in list_elemts %}
 {% if elemt in tickets %}
     {% if elemt in tickets_stop_btn %}
@@ -20,12 +21,13 @@
     <hr class="sep">
 {% endif %}
 {% empty %}
-<section class="container h-25">
+<div class="container h-25">
     <div class="row justify-content-center">
         <div class="col">
             <h2>Désolé aucune donnée sur le flux !</h2>
         </div>
     </div>
+</div>
 </section>
 {% endfor %}
 {% endblock %}

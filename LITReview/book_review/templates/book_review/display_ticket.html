@@ -1,4 +1,4 @@
-<section class="container post-display">
+<div class="container post-display">
     <div class="row justify-content-between">
         <p class="col-auto">{{ticket.user.username}} a demandé une critique</p>
         <p class="col-auto">{{ticket.time_created}}</p>
@@ -7,7 +7,7 @@
         <p class="post-text">{{ticket.description}}</p>
         {% if ticket.image %}
         <div class="row justify-content-center">
-            <img src="{{ticket.image.url}}"  class="col-auto img_post"/>
+            <img src="{{ticket.image.url}}"  class="img_post"/>
         </div>
         {% endif %}
         {% if not stop_btn %}
@@ -24,4 +24,4 @@
         </div>
         </form>
         {% endif %}        
-</section>
+</div>

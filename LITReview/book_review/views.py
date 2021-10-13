@@ -8,6 +8,7 @@ import os
 
 STARS = [1, 2, 3, 4, 5]
 
+
 @login_required   
 def flux(request):
     # On sélectionne l'utilisateur et les personnes suivies
@@ -67,7 +68,7 @@ def posts(request):
     if 'ticket_delete' in request.POST:
         id_to_delete = request.POST.get('ticket_delete')
         ticket_to_delete = Ticket.objects.get(id=id_to_delete)
-        if os.path.exists(ticket_to_delete.image.path):
+        if ticket.image and os.path.exists(ticket_to_delete.image.path):
             os.remove(ticket_to_delete.image.path)
         ticket_to_delete.delete()
         return redirect('book_review:posts')
@@ -106,7 +107,7 @@ def abonnements(request):
                 pair.full_clean()
                 pair.save()
             else:
-                message = 'Il y a un problème avec le nom rentré, veuillez recommencer.'
+                message = "Le nom rentré n'a pas été trouvé, veuillez recommencer."
         # Cas où l'utilisateur souhaite arrêter de suivre une personne
         elif 'unsub' in request.POST:
             unsub_name = request.POST.get('unsub')
@@ -128,7 +129,8 @@ def abonnements(request):
 
 @login_required
 def crea_ticket(request, ticket_id=""):
-    context = {}
+    context = {
+    }
     if ticket_id:
         ticket = Ticket.objects.get(id=ticket_id)
         context["ticket"] = ticket
@@ -146,8 +148,6 @@ def crea_ticket(request, ticket_id=""):
                 if os.path.exists(ticket.image.path):
                     os.remove(ticket.image.path)
                 ticket.image = image
-            ticket.full_clean()
-            ticket.save()
         # Cas où l'on créé un nouveau ticket
         else:
             ticket = Ticket(
@@ -156,14 +156,16 @@ def crea_ticket(request, ticket_id=""):
                 user=user,
                 image=image
             )
-            ticket.full_clean()
-            ticket.save()
+        ticket.full_clean()
+        ticket.save()
         return flux(request)
     return render(request, 'book_review/crea_ticket.html', context)
 
 
 @login_required   
 def crea_review(request):
+    context = {
+    }
     if request.method == "POST":
         title = request.POST.get('title')
         description = request.POST.get('description')
@@ -190,8 +192,6 @@ def crea_review(request):
         review.full_clean()
         review.save()
         return flux(request)
-    context = {
-    }
     return render(request, 'book_review/crea_review.html', context)
 
 

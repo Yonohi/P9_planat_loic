@@ -3,7 +3,6 @@ body {
     flex-direction: column;
     height: 100vh;
     background-color:lightskyblue;
-    overflow: scroll;
 }
 
 header {
@@ -17,6 +16,7 @@ header {
 }
 
 #navbarNav {
+    width: auto;
     justify-content: center;
 }
 
@@ -39,12 +39,12 @@ footer {
 }
 
 section {
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     flex-wrap: nowrap;
-    z-index: 1;    
-    height: 100%;
+    z-index: 1;
     margin: 20px 20px;
     overflow: scroll;
 }

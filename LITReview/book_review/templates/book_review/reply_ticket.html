@@ -12,9 +12,6 @@
     <hr class="sep">
     <form class="form-inline" method="post" action="{% url 'book_review:reply_ticket' ticket.id %}">
     {% include 'book_review/review.html' %}
-       <!-- <div class="d-grid justify-content-end">
-            <input class="btn btn-primary mt-3" type="submit" value="Envoyer">
-        </div>-->
     </form>
 </section>
 {% endblock %}
