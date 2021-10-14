@@ -13,12 +13,12 @@
     {% endif %}
 {% endif %}
 {% empty %}
-<section class="container h-25">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col">
-            <h2>Désolé aucune activité pour le moment !</h2>
+        <div class="col-auto">
+            <h2 class="txt-no-post">Désolé aucune activité pour le moment !</h2>
         </div>
     </div>
-</section>
+</div>
 {% endfor %}
 {% endblock %}

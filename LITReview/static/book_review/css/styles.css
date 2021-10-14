@@ -66,8 +66,8 @@ section {
 
 
 .img_post {
-    max-height: 200px;
-    max-width: 300px;
+    height: auto;
+    width: auto;
     margin-top: 1em;
 }
 
@@ -86,6 +86,10 @@ section {
 
 .rating-bl {
     color:black;
+}
+
+.txt-no-post {
+    margin-top: 20%
 }
 
 .sub-title {

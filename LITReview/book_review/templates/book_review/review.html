@@ -4,7 +4,7 @@
 <div class="row justify-content-center">
     <div class="col mt-3">
         <p>Titre</p>
-        <input class="form-control" type="text" name="headline" maxlength="128" value="{{actual_review.headline}}">
+        <input class="form-control" type="text" name="headline" maxlength="128" value="{{actual_review.headline}}" required>
     </div>
 </div>
 <div class="row justify-content-center">
@@ -53,7 +53,7 @@
 <div class="row justify-content-center">
     <div class="col mt-3">
         <p>Commentaire</p>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" maxlength="8192" name="body">{{actual_review.body}}</textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" maxlength="8192" name="body" required>{{actual_review.body}}</textarea>
     </div>
 </div>
 {% if not stop_btn %}

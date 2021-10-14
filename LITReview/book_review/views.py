@@ -139,6 +139,7 @@ def crea_ticket(request, ticket_id=""):
         description = request.POST.get('description')
         user = get_user(request)
         image = request.FILES.get("image")
+        context['image'] = image
         # Cas où l'on va modifier un ticket existant
         if ticket_id:
             ticket = Ticket.objects.get(id=ticket_id)
