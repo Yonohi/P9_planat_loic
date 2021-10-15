@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user
 from .models import Ticket, Review, UserFollows
+from PIL import Image
 import os
 
 
@@ -145,8 +146,9 @@ def crea_ticket(request, ticket_id=""):
             ticket.title = title
             ticket.description = description
             if image:
-                if os.path.exists(ticket.image.path):
-                    os.remove(ticket.image.path)
+                if ticket.image:
+                    with Image.open(ticket.image.path):
+                        os.remove(ticket.image.path)
                 ticket.image = image
         # Cas où l'on créé un nouveau ticket
         else:

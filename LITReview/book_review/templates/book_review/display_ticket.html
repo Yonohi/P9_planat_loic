@@ -18,7 +18,7 @@
         {% if post %}
         <form class="form-inline" method="post" action="{% url 'book_review:posts' %}">
         {% csrf_token %}
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
             <a href="{% url 'book_review:crea_ticket' ticket.id %}" class="col-auto btn btn-primary mx-3" role="button">Modifier</a>
             <button class="col-auto btn btn-primary" role="button" type="submit" name="ticket_delete" value="{{ticket.id}}">Supprimer</button>
         </div>
