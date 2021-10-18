@@ -18,12 +18,12 @@
 <div class="form-group row-auto justify-content-center mt-3">
     <p>Image</p>
     {% if ticket.image %}
-        <img src="{{ticket.image.url}}"  class="img_post mt-0 mb-3"/>
+        <img src="{{ticket.image.url}}"  class="img-ticket img_post mt-0 mb-3"/>
     {% endif %}
+    <img src="#"  class="img-preview img_post mt-0 mb-3"/>
     <div class="col ">
         <input class="custom-file-input" type="file" name="image" accept="image/*" >
     </div>
-    <img src="#"  class="img-preview img_post mt-0 mb-3"/>
 </div>
 {% if not stop_btn %}
 <div class="d-grid justify-content-end">

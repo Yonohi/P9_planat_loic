@@ -9,4 +9,7 @@ $inputImage.on('change', function(e){
     };
     reader.readAsDataURL(file);
     preview.style.display = 'block';
+    if (document.getElementsByClassName('img-ticket')[0]) {
+        document.getElementsByClassName('img-ticket')[0].style.display = 'none';
+    }
 });
