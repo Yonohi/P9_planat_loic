@@ -64,8 +64,13 @@ section {
     width: auto;
 }
 
+.img-preview {
+    display: none;
+}
 
 .img_post {
+    max-height : 300px;
+    max-width: 300px;
     height: auto;
     width: auto;
     margin-top: 1em;

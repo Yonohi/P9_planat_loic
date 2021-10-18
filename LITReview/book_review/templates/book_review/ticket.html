@@ -23,9 +23,13 @@
     <div class="col ">
         <input class="custom-file-input" type="file" name="image" accept="image/*" >
     </div>
+    <img src="#"  class="img-preview img_post mt-0 mb-3"/>
 </div>
 {% if not stop_btn %}
 <div class="d-grid justify-content-end">
     <input class="btn btn-primary mt-3" type="submit" value="Envoyer">
 </div>
 {% endif %}
+{% load static %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="{% static 'book_review/js/preview_image.js' %}"></script>
