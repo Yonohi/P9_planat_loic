@@ -148,7 +148,8 @@ def crea_ticket(request, ticket_id=""):
             if image:
                 if ticket.image:
                     with Image.open(ticket.image.path):
-                        os.remove(ticket.image.path)
+                        pass
+                    os.remove(ticket.image.path)
                 ticket.image = image
         # Cas où l'on créé un nouveau ticket
         else:
